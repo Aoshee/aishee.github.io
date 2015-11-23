@@ -1,0 +1,22 @@
+#!/bin/sh
+
+. /etc/aisheeblog/scripts.conf
+printf "=========================================================================\n"
+printf "                         Turn off auto backup Data\n"
+printf "=========================================================================\n"
+echo -n "Input data name is turn off [ENTER]: " 
+read dataname
+
+if [ -f /bin/stbackupdb-$dataname ]; then
+echo "Found $dataname in list auto backup"
+echo "Delete..........."
+rm -f /bin/stbackupdb-$dataname
+rm -f /etc/cron.d/db.cron
+systemctl restart  crond.service
+
+echo "Stop auto backup $dataname successful!"
+else
+echo "Not found $dataname"
+echo "Good bye....!"
+exit
+fi

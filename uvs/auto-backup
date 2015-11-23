@@ -1,0 +1,91 @@
+#!/bin/sh
+
+. /etc/aisheeblog/scripts.conf
+
+printf "=========================================================================\n"
+printf "                          Auto backup Data\n"
+printf "=========================================================================\n"
+printf "Please read rules\n\n"
+echo -n "Input the database name [ENTER]: " 
+read dataname
+if [ -f /bin/stbackupdb-$dataname ]; then
+echo "Data $dataname first is autobackup!"
+echo "Good bye....!"
+exit
+fi
+
+if [ -f /var/lib/mysql/$dataname/db.opt ]; then
+
+echo -n "Time to backup ?[0-23]: " 
+read hour
+
+if [ "$hour" = "" ]; then
+	hour="3"
+echo "Input emty, time default is 3 hour"
+fi
+
+echo -n "Today to backup ?[0-7]: " 
+read day
+
+if [ "$day" = "" ]; then
+	day="0"
+echo "Input , default is sunday"
+fi
+
+if [ "$day" = "0" ] || [ "$day" = "7" ]; then
+	day1="Sunday"
+fi
+if [ "$day" = "1" ]; then
+	day1="Monday"
+fi
+if [ "$day" = "2" ]; then
+	day1="Tuesday"
+fi
+if [ "$day" = "3" ]; then
+	day1="Wednesday"
+fi
+if [ "$day" = "4" ]; then
+	day1="Thursday"
+fi
+if [ "$day" = "5" ]; then
+	day1="Friday"
+fi
+if [ "$day" = "6" ]; then
+	day1="Saturday"
+fi
+
+read -r -p "Are you ready?? Auto backup: $hour,$day1 ? [y/N] " response
+case $response in
+    [yY][eE][sS]|[yY]) 
+    cat > "/bin/stbackupdb-$dataname" <<END
+#!/bin/sh
+PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+
+rm -rf /home/$mainsite/private_html/backup/$dataname
+mkdir -p /home/$mainsite/private_html/backup/$dataname
+cd /home/$mainsite/private_html/backup/$dataname
+
+            mysqldump -u root -p$mariadbpass $dataname | gzip -9 > $dataname.sql.gz
+echo -e 'Subject: Backup data $dataname successful!\nLink download backup: http://$mainsite:$priport/backup/$dataname/$dataname.sql.gz\nPlease download in 7 day, file backup auto delete last 7 day\n\nAisheeblog.Com !' | exim  $email
+END
+
+chmod +x /bin/stbackupdb-$dataname
+
+
+    cat >> "/etc/cron.d/db.cron" <<END
+SHELL=/bin/sh
+0 $hour * * $day root /bin/stbackupdb-$dataname >/dev/null 2>&1
+END
+systemctl restart  crond.service
+
+echo "Data $dataname auto backup $day1 every weekly. Email notification."
+        ;;
+    *)
+        echo "Good bye....!"
+        ;;
+esac
+else
+echo "Not found!"
+echo "Good bye...!"
+exit
+fi

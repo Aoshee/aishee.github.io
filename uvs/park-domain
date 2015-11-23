@@ -1,0 +1,48 @@
+#!/bin/bash 
+
+. /etc/aisheeblog/scripts.conf
+printf "=========================================================================\n"
+printf "                            Park Domain\n"
+printf "=========================================================================\n"
+echo -n "Input the domain [ENTER]: " 
+read domain
+if [ "$domain" = "" ]; then
+echo "Error, please try again"
+exit
+fi
+echo -n "Enter the main website ($domain) " 
+read website
+
+if [ -f /etc/nginx/conf.d/$domain.conf ]; then
+echo "Found $domain"
+echo "If want park domain $domain with $website"
+echo "Please delete $domain in server !!!"
+exit
+fi
+
+if [ -f /etc/nginx/conf.d/$website.conf ]; then
+echo "Are you ready???"
+read -r -p "Park domain with $website ? [y/N] " response
+case $response in
+    [yY][eE][sS]|[yY]) 
+    echo "Add $domain....."
+    cat > "/tmp/parkdomain.sh" <<END
+#!/bin/bash
+    sed -i 's/server_name\ $website\;/server_name\ $website\ $domain\;/g' /etc/nginx/conf.d/$website.conf
+END
+chmod +x /tmp/parkdomain.sh
+/tmp/parkdomain.sh
+rm -f /tmp/parkdomain.sh
+	systemctl reload  nginx.service
+
+	echo "$domain park successful $website"
+        ;;
+    *)
+        echo "Good bye....!"
+        ;;
+esac
+else
+echo "Not found !!!!"
+echo "Please try again"
+exit
+fi

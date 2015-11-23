@@ -1,0 +1,80 @@
+#!/bin/bash
+
+. /etc/aisheeblog/scripts.conf
+
+if [ "`systemctl is-active mariadb.service`" == "active" ]; then
+printf "=========================================================================\n"
+printf "                             Create Database\n"
+printf "=========================================================================\n"
+echo -n "Input the database name [ENTER]: " 
+read dataname
+if [ "$dataname" = "" ]; then
+echo "Error,please again "
+exit
+fi
+
+if [ -f /var/lib/mysql/$dataname/db.opt ]; then
+echo "Data $dataname exists"
+echo "Good bye....!"
+exit
+fi
+
+    cat > "/tmp/config.temp" <<END
+CREATE DATABASE $dataname COLLATE utf8_general_ci;
+END
+
+mysql -u root -p$mariadbpass < /tmp/config.temp
+rm -f /tmp/config.temp
+echo "Create $dataname successful !"
+echo "Charset default is utf8 !"
+read -r -p "I can create private $dataname ?? [y/N] " response
+case $response in
+    [yY][eE][sS]|[yY]) 
+	echo -n "Input the user [ENTER]: " 
+	read username
+	if [ "$username" = "" ]; then
+		username="$dataname"
+		echo "Error, user default $dataname"
+	fi
+	echo -n "Input the password for $username [ENTER]: " 
+	read password
+	if [ "$password" = "" ]; then
+		password="$prikey"
+		echo "Error,pass default is $prikey"
+	fi
+    cat > "/tmp/config.temp" <<END
+CREATE USER '$username'@'localhost' IDENTIFIED BY '$password';
+END
+
+	mysql -u root -p$mariadbpass < /tmp/config.temp
+	rm -f /tmp/config.temp
+
+    cat > "/tmp/config.temp" <<END
+GRANT ALL PRIVILEGES ON $dataname . * TO '$username'@'localhost';
+END
+	mysql -u root -p$mariadbpass < /tmp/config.temp
+	rm -f /tmp/config.temp
+
+    cat > "/tmp/config.temp" <<END
+FLUSH PRIVILEGES;
+END
+	mysql -u root -p$mariadbpass < /tmp/config.temp
+	rm -f /tmp/config.temp
+
+	printf "Grant all for user $username on data $dataname successful!\n\n"
+	
+	echo "==================="
+	echo "Infomation:"
+	printf "Name: $dataname\nUser: $username\npassword: $password\n\n"
+	
+        ;;
+    *)
+
+	echo "Good bye....!"
+        ;;
+esac
+else
+echo "MariaDB not active, error!!!"
+echo "Try again"
+exit
+fi

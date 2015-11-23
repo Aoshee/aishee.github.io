@@ -1,0 +1,45 @@
+#!/bin/bash
+
+. /etc/aisheeblog/scripts.conf
+
+if [ "`systemctl is-active mariadb.service`" == "active" ]; then
+printf "=========================================================================\n"
+printf "                             Delete Database\n"
+printf "=========================================================================\n"
+printf "Job is not restore, are you ready???\n\n"
+echo -n "Input database name [ENTER]: " 
+read dataname
+
+if [ "$dataname" = "mysql" ] || [ "$dataname" = "infomation_schema" ] || [ "$dataname" = "performance_schema" ]; then
+echo "Is crazy !!!"
+echo "I can delete database system ?"
+echo "Good bye...!"
+exit
+fi
+
+if [ -f /var/lib/mysql/$dataname/db.opt ]; then
+read -r -p "Found $dataname, i can delete??? ? [y/N] " response
+case $response in
+    [yY][eE][sS]|[yY]) 
+    cat > "/tmp/config.temp" <<END
+drop database $dataname;
+END
+
+mysql -u root -p$mariadbpass < /tmp/config.temp
+rm -f /tmp/config.temp
+echo "Delete $dataname successful !"
+        ;;
+    *)
+        echo "Good bye....!"
+        ;;
+esac
+else
+echo "Data $dataname not found"
+echo "Good bye....!"
+exit
+fi
+else
+echo "MariaDB is not active!!!"
+echo "Try again"
+exit
+fi

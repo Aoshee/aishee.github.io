@@ -1,0 +1,40 @@
+#!/bin/sh
+
+. /etc/aisheeblog/scripts.conf
+
+clear
+prompt="Enter the number for menu:"
+options=("List website" "Add website" "Delete website" "Backup code" "Backup data" "Auto backup" "Stop auto backup" "Create database" "Delete database" "Change pass VPS" "Turn off phpMyAdmin" "Add park domain" "Add redirect domain" "Permission webserver" "Upgrade server")
+
+printf "=========================================================================\n"
+printf "               Aisheeblog Script $aisheeblog_version - http://aisheeblog.com/ \n"
+printf "=========================================================================\n"
+printf "                             AisheeBlog Menu\n"
+printf "=========================================================================\n"
+PS3="
+$prompt"
+select opt in "${options[@]}" "Exit"; do 
+
+    case "$REPLY" in
+    1 ) /etc/aisheeblog/menu/list-website;;
+    2 ) /etc/aisheeblog/menu/add-website;;
+    3 ) /etc/aisheeblog/menu/delete-website;;
+    4 ) /etc/aisheeblog/menu/backup-code;;
+    5 ) /etc/aisheeblog/menu/backup-data;;
+    6 ) /etc/aisheeblog/menu/auto-backup;;
+    7 ) /etc/aisheeblog/menu/turn-off-auto-backup;;
+    8 ) /etc/aisheeblog/menu/create-database;;
+    9 ) /etc/aisheeblog/menu/delete-database;;
+    10 ) /etc/aisheeblog/menu/change-pass;;
+    11 ) /etc/aisheeblog/menu/turn-off-phpmyadmin;;
+    12 ) /etc/aisheeblog/menu/park-domain;;
+    13 ) /etc/aisheeblog/menu/redirect-domain;;
+    14 ) /etc/aisheeblog/menu/chmod-webserver;;
+    15 ) /etc/aisheeblog/menu/upgrade-server;;
+
+    $(( ${#options[@]}+1 )) ) printf "\nGood bye!\n"; break;;
+    *) echo "Input error, input of [1-16]";continue;;
+
+    esac
+
+done

@@ -1,0 +1,145 @@
+body {
+    color: #444;
+    margin: 0;
+    background-color: #fff;
+}
+p {
+    margin: 0 0 15px 0;
+}
+hr {
+    border: solid #ddd;
+    border-width: 1px 0 0;
+    clear: both;
+    margin: 10px 0 10px;
+    height: 0;
+}
+h4 {
+    font-size: 20px;
+    line-height: 23px;
+}
+a,
+a:visited {
+    color: #333;
+    text-decoration: none;
+    outline: 0;
+}
+a:hover,
+a:focus {
+    color: #000;
+}
+p a,
+p a:visited {
+    line-height: inherit;
+}
+.header {
+    padding: 20px;
+    text-align: center;
+    border-bottom: 5px solid #f7f1dd;
+    margin-bottom: 30px;
+}
+input[type="text"],
+input[type="password"],
+input[type="email"] {
+    width: 490px;
+    height: 40px;
+    margin: 10px 0 6px 0;
+    font-size: 15px;
+}
+.bcontainer {
+    max-width: 555px;
+    max-height: 355px;
+    margin: 0 auto;
+}
+.header-text {
+    text-align: center;
+}
+.active {
+    font-weight: bold;
+    color: #1C974F
+}
+.btn-default {
+    color: #333;
+    background-color: #fff;
+    border-color: #ccc;
+    margin: 12px 0 0 0;
+}
+.btn-main {
+    font-size: 18px;
+    margin: 16px 0 0;
+}
+.image {
+    border-radius: 150px;
+    background: #E0E0E0;
+    border: 5px solid #f8f8f8;
+    height: 150px;
+    width: 150px;
+}
+.content {
+    font-size: 14px;
+    line-height: 20px;
+}
+.well {
+    background: #F8f8f8;
+    margin-bottom: 20px;
+    padding: 10px 0 0 20px;
+    border-radius: 10px;
+    border-bottom: 5px solid #EEEEEE;
+    border-right: 2px solid #EEEEEE;
+}
+.box {
+    border: 2px solid #EEEEEE;
+    border-radius: 5px;
+    padding: 10px;
+}
+.brow {
+    padding: 5px 0;
+    margin: 0 auto;
+    word-wrap: break-word;
+    clear: both;
+}
+[class*='bcol-'] {
+    float: left;
+}
+.bcol-30 {
+    width: 30%;
+}
+.bcol-70 {
+    width: 70%;
+}
+.bcol-90 {
+    width: 90%;
+}
+
+.btn:hover {
+    opacity: 0.6;
+}
+.btn {
+    padding: 8px 15px;
+    color: #FFF;
+    background: #3498db;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    border-radius: 4px;
+    cursor: pointer;
+    border: solid 0 transparent;
+}
+.bcolor {
+    background: #3CBE72
+}
+@media screen and (max-width: 768px) {
+    .bcontainer {
+        padding: 2%;
+        width: 96%;
+    }
+}
+.error-template {
+    padding: 40px 15px;
+    text-align: center;
+}
+.error-actions {
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+.error-actions .btn {
+    margin-right: 10px;
+}

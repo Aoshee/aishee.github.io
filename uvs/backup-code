@@ -1,0 +1,46 @@
+#!/bin/bash
+
+. /etc/aisheeblog/scripts.conf
+
+saoluucode()
+{
+	echo "Backup $website, please wait...."
+	cd /home/$website/public_html/
+	tar czf $website.tar.gz *
+	
+	mkdir -p /home/$mainsite/private_html/backup/$website/
+	mv $website.tar.gz /home/$mainsite/private_html/backup/$website/$website.tar.gz
+
+	echo "Backup $website successful..."
+	echo "Path file backup: /home/$mainsite/private_html/backup/$website/$website.tar.gz"
+	echo "Link download backup: http://$mainsite:$priport/backup/$website/$website.tar.gz"
+}
+
+printf "=========================================================================\n"
+printf "                             Backup Code\n"
+printf "=========================================================================\n"
+echo -n "Input website name [ENTER]: " 
+read website
+
+if [ -f /home/$website/public_html/index.php ]; then
+echo "Found $website"
+if [ -f /home/$mainsite/private_html/backup/$website/$website.tar.gz ]; then
+read -r -p "Found file backup old, delete file and create new backup ? [y/N] " response
+case $response in
+    [yY][eE][sS]|[yY]) 
+    	rm -rf /home/$mainsite/private_html/backup/$website/
+	
+	backupcode
+        ;;
+    *)
+        echo "Good bye....!"
+        ;;
+esac
+else
+	backupcode
+fi
+else
+echo "Not found $website"
+echo "Good bye...!"
+exit
+fi

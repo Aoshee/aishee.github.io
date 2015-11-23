@@ -1,0 +1,46 @@
+#!/bin/bash 
+
+. /etc/aisheeblog/scripts.conf
+printf "=========================================================================\n"
+printf "                            Redirect Domain\n"
+printf "=========================================================================\n"
+
+echo -n "Input the domain and [ENTER]: " 
+read domain
+if [ "$domain" = "" ]; then
+echo "Error,please try again"
+exit
+fi
+echo -n "Input the domain redirect: " 
+read website
+
+if [ -f /etc/nginx/conf.d/$domain.conf ]; then
+echo "Found $domain exists"
+echo "I want $domain to website"
+echo "Please delete the domain and try again !!!"
+exit
+fi
+
+if [ -f /etc/nginx/conf.d/$website.conf ]; then
+echo "Add domain...."
+read -r -p "And redirect to $website??? [y/N] " response
+case $response in
+    [yY][eE][sS]|[yY]) 
+        cat >> "/etc/nginx/conf.d/$website.conf" <<END
+server {
+	    server_name www.$domain $domain;
+	    rewrite ^(.*) http://$website\$1 permanent;
+    	}
+END
+	systemctl reload  nginx.service
+	echo "$domain redirect to $website"
+        ;;
+    *)
+        echo "Good bye....!"
+        ;;
+esac
+else
+echo "Not found !!!!"
+echo "Please try again"
+exit
+fi

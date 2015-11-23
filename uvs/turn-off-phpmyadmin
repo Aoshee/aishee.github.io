@@ -1,0 +1,48 @@
+#!/bin/bash
+
+. /etc/aisheeblog/scripts.conf
+
+if [ -f /home/$mainsite/private_html/index.php ]; then
+printf "=========================================================================\n"
+printf "                             Turn off phpMyAdmin\n"
+printf "=========================================================================\n"
+printf "phpMyAdmin is active.\n\n"
+read -r -p "Are you ready ? [y/N] " response
+case $response in
+    [yY][eE][sS]|[yY]) 
+	mv /home/$mainsite/private_html/index.php /home/$mainsite/private_html/index.bak
+	systemctl restart php-fpm.service
+
+	rm -f /home/$mainsite/private_html/index.html
+    cat > "/home/$mainsite/private_html/index.html" <<END
+<html>
+<head><title>403 Forbidden</title></head>
+<body bgcolor="white">
+<center><h1>403 Forbidden</h1></center>
+<hr><center>aisheeblog.com</center>
+</body>
+</html>
+END
+
+	echo "phpmyadmin is turn off !"
+        ;;
+    *)
+        echo "Good bye....!"
+        ;;
+esac
+exit
+fi
+echo "phpmyadmin is turn off !!!"
+read -r -p "I want turn on phpmyadmin ? [y/N] " response
+case $response in
+    [yY][eE][sS]|[yY]) 
+	mv /home/$mainsite/private_html/index.bak /home/$mainsite/private_html/index.php
+	rm -f /home/$mainsite/private_html/index.html
+	systemctl restart php-fpm.service
+
+	echo "phpmyadmin is turn on !"
+        ;;
+    *)
+        echo "Good bye....!"
+        ;;
+esac

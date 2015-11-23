@@ -1,0 +1,18 @@
+#!/bin/bash
+
+. /etc/aisheeblog/scripts.conf
+
+printf "=========================================================================\n"
+printf "                          Permission WebServer\n"
+printf "=========================================================================\n"
+read -r -p "Are you ready continue? [y/N] " response
+case $response in [yY][eE][sS]|[yY])
+	chown -R nginx:nginx /home/*/public_html
+	chown -R nginx:nginx /home/*/private_html
+	echo "Da phan quyen lai cho webserver!"
+        ;;
+	*)
+        echo "Good bye....!"
+        ;;
+esac
+exit

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Register Page">
+    <meta name="author" content="Aishee Nguyen">
+    <title>Register Page</title>
+    <link href="content/css/styles.css" rel="stylesheet">
+    <script src="content/js/base.js"></script>
+</head>
+
+<body>
+<div>
+    <nav class="bcontainer header-text">
+        <ul>
+            <li class="btn btn-default"><a href="http://bkavtrain.com">Home</a></li>
+            <li class="btn btn-default"><a href="http://aishee.net" target="_blank">About</a></li>
+        </ul>
+    </nav>
+    <div class="bcontainer brow">
+        <div class="bcol-30">
+            <div class="image"></div>
+        </div>
+        <div class="bcol-70">
+            <div class="content">
+                <h4>Hello You</h4>
+                <p>- Username chỉ gồm có chữ cái, số, độ dài từ 3-20 ký tự.
+                    <br> - Password độ dài tối thiểu là 6.
+                    <br> - Confirm Password phải trùng với password.
+                    <br> - Email có dạng abc@xyz.com, chỉ gồm chữ cái, số, ký tự @, dấu chấm.</p>
+            </div>
+        </div>
+    </div>
+    <div class="bcontainer header">
+        <div class="brow">
+            <div class="well">
+                <a href="#" class="active bcol-90">Register Page</a>
+                <hr>
+            </div>
+            <div class="box">
+                <form action="thankto.php" method="post" onSubmit="return checkForm(this);">
+                    <input type="text" name="username"  tabindex="1" placeholder="Username" value="">
+                    <input type="email" name="email" tabindex="2" placeholder="Email Address" value="">
+                    <input type="password" name="password" tabindex="3" placeholder="Password">
+                    <input type="password" name="conPassword" tabindex="4" placeholder="Confirm Password">
+                    <div class="brow">
+                        <input type="submit" name="register" class="btn btn-main bcolor" value="Register Now">
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+
+</html>

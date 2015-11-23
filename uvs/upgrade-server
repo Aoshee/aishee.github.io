@@ -1,0 +1,39 @@
+#!/bin/bash
+
+. /etc/aisheeblog/scripts.conf
+
+prompt="Input the select: "
+options=("Testing update" "Update Nginx" "Update PHP" "Update MariaDB")
+printf "=========================================================================\n"
+printf "                           Upgrade server\n"
+printf "=========================================================================\n"
+printf "                 Upgrade Nginx, PHP, MariaDB for server.\n"
+printf "=========================================================================\n"
+PS3="
+$prompt"
+select opt in "${options[@]}" "Exit"; do 
+
+    case "$REPLY" in
+    1 )
+    wget -q $script_url/update/upgrade -O /etc/aisheeblog/update/upgrade && chmod +x /etc/aisheeblog/update/upgrade
+    /etc/aisheeblog/update/upgrade
+    ;;
+    2 )
+    wget -q $script_url/update/upgrade-nginx -O /etc/aisheeblog/update/upgrade-nginx && chmod +x /etc/aisheeblog/update/upgrade-nginx
+    /etc/aisheeblog/update/upgrade-nginx
+    ;;
+    3 )
+    wget -q $script_url/update/upgrade-php -O /etc/aisheeblog/update/upgrade-php && chmod +x /etc/aisheeblog/update/upgrade-php
+    /etc/aisheeblog/update/upgrade-php
+    ;;
+    4 )
+    wget -q $script_url/update/upgrade-mariadb -O /etc/aisheeblog/update/upgrade-mariadb && chmod +x /etc/aisheeblog/update/upgrade-mariadb
+    /etc/aisheeblog/update/upgrade-mariadb
+    ;;
+
+    $(( ${#options[@]}+1 )) ) printf "\nGood bye....!\n"; break;;
+    *) echo "Error, please select in list";continue;;
+
+    esac
+
+done

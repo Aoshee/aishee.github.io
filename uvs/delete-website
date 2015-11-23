@@ -1,0 +1,37 @@
+#!/bin/bash
+
+. /etc/aisheeblog/scripts.conf
+
+printf "=========================================================================\n"
+printf "                             Delete Website\n"
+printf "=========================================================================\n"
+printf "Job is not restore, careful!!\n"
+
+echo -n "Input the website name [ENTER]: " 
+read website
+
+if [ "$website" = "$mainsite" ]; then
+echo "I can delete main website ????"
+echo "Good bye...!"
+exit
+fi
+
+if [ -f /etc/nginx/conf.d/$website.conf ]; then
+read -r -p "Found website, are you ready ?? [y/N] " response
+case $response in
+    [yY][eE][sS]|[yY]) 
+rm -rf /home/$website
+rm -f /etc/nginx/conf.d/$website.conf
+systemctl reload  nginx.service
+
+echo "Delete website successful...!"
+        ;;
+    *)
+        echo "Good bye....!"
+        ;;
+esac
+else
+echo "Not found!"
+echo "Good bye....!"
+exit
+fi
