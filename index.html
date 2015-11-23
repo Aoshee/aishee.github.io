@@ -1,2 +1,431 @@
-<p>Aishee</p>
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+      <title>Aishee Nguyen</title>
+      <meta charset="utf-8">
+ 
 
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+      <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+      <link rel="stylesheet" type="text/css" media="screen" href="css/style.css">
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+      <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+        <script src="js/home.js"></script>
+        <link rel="shortcut icon" id="favicon" href="icons/home.ico">
+   </head>
+   <body>
+      <div class="container-fluid">
+         <nav class="navbar navbar-inverse navbar-fixed-top">
+            <div class="navbar-header">
+            </div>
+            <div>
+               <ul class="nav navbar-nav">
+                  <li><a href="#" onclick="scroll_to_about_me();">About Me</a></li>
+                  <li><a href="#" onclick="scroll_to_my_skills();">My Skills</a></li>
+                  <li><a href="#" onclick="scroll_to_projects();">Projects</a></li>
+                  <li><a href="#" onclick="scroll_to_resume();">My Resume</a></li>
+                  <li><a href="#" onclick="scroll_to_blog();">My Blog</a></li>
+                  <li><a href="#" onclick="scroll_to_contact();">Contact Me</a></li>
+               </ul>
+            </div>
+         </nav>
+      </div>
+      <br>
+      <div class="container-fluid" style="background:white;" onmouseover="close_skills_info();">
+         <br><br>
+         <img src="images/profile_title.png" class="click-to-jiggle jiggle" onmouseover="stop_jiggle();" alt="HTML" width="300" height="120">
+         <div id = "profile_left">
+            <div id="slide-panel"  class = "visible">
+                <button type="button" style="text-decoration:none" class="btn btn-danger"  value="Contact Me"  id="opener" onclick="changeValue(this.id);" >Read Me!</button><i class=""></i>
+               <h2>About Me</h2>
+               <br><br>
+               <div id = "text_area_contact">
+             	<p style="color:white; text-align:justify;">Tôi đam mê về Security và Cloud Computing, thích tìm hiểu các công nghệ mới và áp dụng chúng vào thực tế. Yêu thích sự đơn giản và ghét sự phức tạp. Tôi làm việc chăm chỉ để học hỏi những điều mới và đang luôn luôn tìm cách để cải thiện khả năng của mình trong tất cả các lĩnh vực IT.</p>
+               </div>
+            </div>
+         </div>
+         <br><br>
+         <br><br>
+         <br><br>
+         <div class="row">
+            <div class="col-md-3" >
+               <img src="images/profile.jpg" class="img-thumbnail" alt="Cinque Terre">
+               <div id ="hobby_info" style= "float:center"><br>Aishee Nguyen<br>+84.985.768.823<br>aishee@aishee.net<br></div>
+            </div>
+            <div class="col-md-6">
+               <div class ="profile_text"><strong>
+                  Nick name: Aishee Nguyen.
+                  Ngày sinh: 24/11/1995.
+                  Hiện đang là sinh viên năm 3 của Học Viện Kỹ Thuật Quân Sự.
+                  Thích lập trình, bảo mật, mạng, cloud, và có một sự hiểu biết tốt cho tất cả.</strong>
+                  Tôi đang tìm kiếm một vị trí mà tôi có thể tìm hiểu thêm về các công nghệ và các khuôn khổ mà tôi quan tâm.
+                  Tôi thích Python, Perl và có thể làm việc tốt về nó, luôn làm việc một cách tỉ mỉ nhất cho dự án của mình. 
+               </div>
+            </div>
+            <div class="col-md-3" >
+               <div class ="profile_text">Tôi rất giỏi trong việc học tập các công nghệ mới của riêng mình. Tôi mong muốn một vai trò đó là thử thách và có thể cải thiện kỹ năng của mình và có thể là bước đầu tiên của tôi với một sự nghiệp lớn trong lĩnh vực CNTT </div>
+            </div>
+         </div>
+         <br><br><br><br><br><br>
+      </div>
+      <div class="container-fluid" style="background:#efefef" onmouseover="rehighlightAll();">
+         <div id="skills_scroll_helper"></div>
+         <br><br>
+         <img src="images/skills_title.png" class="click-to-jiggle jiggle" onmouseover="stop_jiggle();" alt="HTML" width="300" height="120">
+         <br><br><br><br>
+         <div class="progress" style="float:left">
+            <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="40"
+               aria-valuemin="0" aria-valuemax="100" style="width:95%">
+               Networking
+            </div>
+         </div>
+         <div class="progress" style="float:right">
+            <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="50"
+               aria-valuemin="0" aria-valuemax="100" style="width:90%">
+               Python
+            </div>
+         </div>
+         <br>
+         <div class="progress" style="float:left">
+            <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="40"
+               aria-valuemin="0" aria-valuemax="100" style="width:94%">
+               Linux
+            </div>
+         </div>
+         <div class="progress" style="float:right">
+            <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="50"
+               aria-valuemin="0" aria-valuemax="100" style="width:90%">
+               Perl
+            </div>
+         </div>
+         <br>
+         <div class="progress" style="float:left">
+            <div class="progress-bar progress-bar-success"  role="progressbar" aria-valuenow="70"
+               aria-valuemin="0" aria-valuemax="100" style="width:70%">
+               Lua
+            </div>
+            <br><br>
+         </div>
+         <div class="progress" style="float:right">
+            <div class="progress-bar progress-bar-info"  role="progressbar" aria-valuenow="70"
+               aria-valuemin="0" aria-valuemax="100" style="width:78%">
+               HTML
+            </div>
+            <br><br>
+         </div>
+         <div class="progress" style="float:left">
+            <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="60"
+               aria-valuemin="0" aria-valuemax="100" style="width:75%">
+               JavaScript
+            </div>
+         </div>
+         <div class="progress" style="float:right">
+            <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="70"
+               aria-valuemin="0" aria-valuemax="100" style="width:70%">
+               CSS
+            </div>
+         </div>
+         <br>
+         <div class="progress" style="float:left">
+            <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="40"
+               aria-valuemin="0" aria-valuemax="100" style="width:77%">
+               Bootstrap
+            </div>
+         </div>
+         <div class="progress" style="float:right">
+            <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="50"
+               aria-valuemin="0" aria-valuemax="100" style="width:65%">
+               C#
+            </div>
+         </div>
+         <br>
+         <div class="progress" style="float:left">
+            <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="60"
+               aria-valuemin="0" aria-valuemax="100" style="width:70%">
+               BigData
+            </div>
+         </div>
+         <div class="progress" style="float:right">
+            <div class="progress-bar progress-bar-warning"  role="progressbar" aria-valuenow="70"
+               aria-valuemin="0" aria-valuemax="100" style="width:95%">
+               Bash Shell
+            </div>
+            <br><br>
+         </div>
+         <div class="progress" style="float:left">
+            <div class="progress-bar progress-bar-warning"  role="progressbar" aria-valuenow="70"
+               aria-valuemin="0" aria-valuemax="100" style="width:76%">
+               Visual Studio
+            </div>
+            <br><br>
+         </div>
+         <div class="progress" style="float:right">
+            <div class="progress-bar progress-bar-warning"  role="progressbar" aria-valuenow="70"
+               aria-valuemin="0" aria-valuemax="100" style="width:53%">
+               Eclipse
+            </div>
+            <br><br>
+         </div>
+         <div class="progress" style="float:left">
+            <div class="progress-bar progress-bar-warning"  role="progressbar" aria-valuenow="70"
+               aria-valuemin="0" aria-valuemax="100" style="width:75%">
+               GitHub
+            </div>
+            <br><br>
+         </div>
+         <div class="progress" style="float:right">
+            <div class="progress-bar progress-bar-danger"  role="progressbar" aria-valuenow="70"
+               aria-valuemin="0" aria-valuemax="100" style="width:95%">
+               PHP Storm & PyCharm
+            </div>
+            <br><br>
+         </div>
+         <div class="progress" style="float:left">
+            <div class="progress-bar progress-bar-danger"  role="progressbar" aria-valuenow="70"
+               aria-valuemin="0" aria-valuemax="100" style="width:66%">
+               NodeJs
+            </div>
+            <br><br>
+         </div>
+         <div class="progress" style="float:right">
+            <div class="progress-bar progress-bar-danger"  role="progressbar" aria-valuenow="70"
+               aria-valuemin="0" aria-valuemax="100" style="width:59%">
+               JQuery
+            </div>
+            <br><br>
+         </div>
+         <div class="progress" style="float:left">
+            <div class="progress-bar progress-bar-danger"  role="progressbar" aria-valuenow="70"
+               aria-valuemin="0" aria-valuemax="100" style="width:75%">
+               PHP
+            </div>
+            <br><br>
+         </div>
+         <div class="progress" style="float:right">
+            <div class="progress-bar progress-bar-danger"  role="progressbar" aria-valuenow="70"
+               aria-valuemin="0" aria-valuemax="100" style="width:58%">
+               Scala
+            </div>
+            <br><br><br><br><br><br><br><br>
+         </div>
+      
+      </div><br><br><br><br><br><br>
+      <div class="container-fluid" style="background-image: url('images/end.png')">
+         <div id ="project_scroll_helper"></div>
+         <br> <br>
+         <div class="jumbotron">
+            <h1 style ="color:white">My Projects</h1>
+            <p style ="color:white">Click the button to get started, all projects source code is on GitHhub</p>
+            <button type="button" class="btn btn-info" data-toggle="collapse" value="Show Back End"   name="submit-button"  id="submit-button" onclick="changeValue(this.id);" data-target="#back_end_projects">Show Back End</button>
+                 <button type="button" class="btn btn-info" data-toggle="collapse" value="Show Front End"   name="submit-button"  id="submit-button-front" onclick="changeValue(this.id);" data-target="#front_end_projects">Show Front End</button>
+             
+         </div>
+     
+         <div id ="back_end_projects" class = "collapse">
+            <div class="col-md-3">
+               <img src="images/bet.png" class="img-circle" data-toggle="modal" id="1" style="cursor: pointer"  data-target="#project_info_modal"  alt="Cinque Terre" width="140" height="140">
+               <p style = "color:white">VPN Platform (Private)</p>
+               <form method="get"  action="#canvas">
+                  <a href="https://github.com/aishee/Platform-VPN" target="_blank" class="btn btn-success" style="opacity:0.7" role="button">View Source Code</a>
+               </form>
+            </div>
+            <div class="col-md-3">
+               <img src="images/files.png" class="img-circle" style="cursor: pointer" data-toggle="modal" id="2"  data-target="#project_info_modal" alt="Cinque Terre" width="140" height="140"> 
+               <p style = "color:white">PHP script upload images</p>
+               <form method="get"  action="#canvas">
+                  <a href="https://github.com/aishee/images" target="_blank" class="btn btn-success" style="opacity:0.7" role="button">View Source Code</a>
+               </form>
+            </div>
+            <div class="col-md-3">
+               <img src="images/languages.png" class="img-circle" style="cursor: pointer"  data-toggle="modal" id="3"  data-target="#project_info_modal"  alt="Cinque Terre" width="140" height="140">  
+               <p style = "color:white">PHP & Bash backup server</p>
+               <form method="get"  action="#canvas">
+                  <a href="https://github.com/aishee/JobMo-Backup" target="_blank" class="btn btn-success" style="opacity:0.7" role="button">View Source Code</a>
+               </form>
+            </div>
+            <div class="col-md-3">
+               <img src="images/rmi.png" class="img-circle" data-toggle="modal" id="4" style="cursor: pointer"   data-target="#project_info_modal"   alt="Cinque Terre" width="140" height="140">
+               <p style = "color:white">Python monitor server</p>
+               <form method="get"  action="#canvas">
+                  <a href="https://github.com/aishee/Monitor" target="_blank" class="btn btn-success" style="opacity:0.7" role="button">View Source Code</a>
+               </form>
+            </div>
+   
+         </div>
+       <br><br>
+       
+   
+         <div id ="front_end_projects" class = "collapse">
+                <br><br>  <br><br>  <br><br>
+            <div class="col-md-4">
+             <br><br>
+               <img src="images/game.png" class="img-circle" data-toggle="modal" id="5" style="cursor: pointer" data-target="#project_info_modal"    alt="Cinque Terre" width="140" height="140">
+               <p style = "color:white">Python malware Find</p>
+               <form method="get"  action="#canvas">
+                  <a href="https://github.com/aishee/phpFind" target="_blank" class="btn btn-success" style="opacity:0.7" role="button">View Source Code</a>
+               </form>
+            </div>
+            <div class="col-md-4">
+             <br><br>
+               <img src="images/charity.png" class="img-circle" style="cursor: pointer" data-toggle="modal" id="6" data-target="#project_info_modal"    alt="Cinque Terre" width="140" height="140"> 
+               <p style = "color:white">Bash shell install server</p>
+               <form method="get"  action="#canvas">
+                  <a href="https://github.com/aishee/script-server" target="_blank" class="btn btn-success" style="opacity:0.7" role="button">View Source Code</a>
+               </form>
+            </div>
+            <div class="col-md-4">
+             <br><br>
+               <img src="images/files.png" class="img-circle" style="cursor: pointer"  data-toggle="modal" id="7" data-target="#project_info_modal"    alt="Cinque Terre" width="140" height="140">  
+               <p style = "color:white">Python Malware</p>
+               <form method="get"  action="#canvas">
+                  <a href="https://github.com/aishee/Modules" target="_blank" class="btn btn-success" style="opacity:0.7" role="button">View Source Code</a>
+               </form>
+            </div>
+      
+   
+         </div>
+   <br><br><br>   <br><br><br>   <br><br><br>   <br><br><br>   <br><br><br>   <br><br><br>   <br><br><br>
+         <!-- Modal -->
+         <div class="modal fade" id="project_info_modal" role="dialog" >
+            <div class="modal-dialog" >
+               <!-- Modal content-->
+               <div class="modal-content">
+                  <div class="modal-header" >
+                     <button type="button" class="close" data-dismiss="modal">&times;</button>
+                     <h4 class="modal-title" id="project_info_body" style="text-align:center">.</h4>
+                  </div>
+                  <div class="modal-body">
+                     <div class="panel panel-default">
+                        <div class="panel-body" style="text-align:justify" id="project_text_body">
+                        </div>
+                     </div>
+                  </div>
+                  <div class="modal-footer">
+                     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+
+
+
+
+      <div class = "container-fluid" style="background:white" >
+         <div id ="scroll_helper"></div>
+         <br><br>
+         <img src="images/resume_title.png" class="click-to-jiggle jiggle" onmouseover="stop_jiggle();" alt="HTML" width="300" height="120">
+         <br><br><br><br>
+         <ul class="timeline">
+         
+            <li>
+               <div class="timeline-badge danger"><i class="glyphicon glyphicon-check"></i></div>
+               <div class="timeline-panel">
+                  <div class="timeline-heading">
+                     <h4 class="timeline-title">Thực tập kỹ thuật viên (June 2014-Present)</h4>
+                     <br>
+                     <h5 ><i class=""></i>Hết năm 1 đại học thực tập 1 thời gian ở công ty cổ phần dữ liệu toàn cầu Gdata vai trò kỹ thuật viên.
+                     Cài đặt , bảo mật hệ thống server, hỗ trợ các vấn đề kỹ thuật.
+                     </h5>
+                  </div>
+               </div>
+            </li>
+                <li>
+               <div class="timeline-badge danger"><i class="glyphicon glyphicon-check"></i></div>
+               <div class="timeline-panel" >
+                  <div class="timeline-heading">
+                     <h4 class="timeline-title">Thực tập bảo mật hệ thống (June 2015)</h4>
+                  </div>
+                  <br>
+                  <div class="timeline-body" >
+                     <h5><i class="" ></i>Hết năm 2 thực tập tại công ty truyền thông đa phương tiện Việt Nam vai trò bảo mật hệ thống website, server.
+                     </h5>
+                  </div>
+                
+               </div>
+            </li>
+            <li class="timeline-inverted">
+               <div class="timeline-badge info"><i class="glyphicon glyphicon-check"></i></div>
+               <div class="timeline-panel" >
+                  <div class="timeline-heading">
+                     <h4 class="timeline-title">Bước vào năm đầu đại học (2013)</h4>
+                  </div>
+                  <br>
+                  <div class="timeline-body" >
+                     <h5><i class="" ></i>Tự học Linux, Python, Perl, nghiên cứu Cloud Computing và Security.
+                     </h5>
+                  </div>
+               </div>
+            </li>
+            <li class="timeline-inverted">
+               <div class="timeline-badge info"><i class="glyphicon glyphicon-check"></i></div>
+               <div class="timeline-panel">
+                  <div class="timeline-heading">
+                     <h4 class="timeline-title">Thời học cấp 3 (2012)</h4>
+                     <br>
+                  </div>
+                  <div class="timeline-body">
+                     <h5><i class=""></i>Tự học PHP & Mysql. Thiết kế website với các mã nguồn mở.
+                     </h5>
+                  </div>
+               </div>
+            </li>
+      <div class = "container-fluid" style="background-image: url('images/end.png')" >
+         <br> <br>
+         <div class="jumbotron" style="opacity:0.6">
+            <h1 style ="color:white">My Hobbies!</h1>
+            <p style ="color:white">These are some of my interests outside IT</p>
+         </div>
+         <br> <br><br> <br>
+         <div class = "hobby_pics">
+            <div class="col-md-3">
+               <img src="images/football.png" alt="Cinque Terre" class="img-rounded"  width="140" height="140">
+            </div>
+            <div class="col-md-3">        
+               <img src="images/chess.png" class="img-rounded"   alt="Cinque Terre" width="140" height="140"> 
+            </div>
+            <div class="col-md-3">        
+               <img src="images/cycle.png" class="img-rounded"  alt="Cinque Terre" width="140" height="140">  
+            </div>
+            <div class="col-md-3">        
+               <img src="images/music.png" class="img-rounded" alt="Cinque Terre" width="140" height="140">
+            </div>
+         </div>
+
+
+         <br> <br><br> <br><br> <br><br><br><br><br><br><br><br><br>
+
+      </div>
+
+      <div id ="container-fluid" style="text-align:center; background:#efefef;">
+          <div id="contact_scroll_helper"></div>
+          <br><br>
+         <img src="images/contact.png"  class="click-to-jiggle jiggle" onmouseover="stop_jiggle();" alt="HTML" width="300" height="120">
+         <br><br><br><br>
+      <br>
+
+<div class="col-md-2" style="background:#efefef;"></div><div class="col-md-8" style="text-align:left; font-style:italic; background:#efefef;"> <form action="process.php" method="get"> <div class="form-group" > <label for="name">First Name:</label> <input type="text" class="form-control" data-toggle="tooltip" title="Your name" id="name" name="name" placeholder="Enter Firstname" required> </div><div class="form-group"> <label for="sname">Surname:</label> <input type="text" class="form-control" data-toggle="tooltip" title="Your surname" id="sname" name="sname" placeholder="Enter Surname" required> </div><div class="form-group"> <label for="email">Email:</label> <input type="email" class="form-control" data-toggle="tooltip" title="Careful with this one!" id="email" name="email" placeholder="Enter email" required> </div><div class="form-group"> <label for="phone">Phone:</label> <input type="text" class="form-control" data-toggle="tooltip" id="phone" title="Your Phone Number" name="phone" placeholder="Enter Phone Number" required> </div><div class="form-group"> <label for="comments">Comments:</label> <input type="text" class="form-control" data-toggle="tooltip" title="Say something else" id="comments" name="comments" placeholder="Any Comments?" required> </div><input type="submit" data-toggle="tooltip" title="Submit!" id="button" name="button" value="Submit" class="btn btn-success">&nbsp;&nbsp; <input type="reset" data-toggle="tooltip" title="Clear All Fields!" value="Reset" class="btn btn-danger"></form>
+<br><br><br><br><br><br>
+         <div class="github_container"  >
+            <div class ="git_link" >
+               <form method="get"  action="docs/Aishee-Nguyen-CV.doc">
+                  <a href="" download="docs/Aishee-Nguyen-CV.doc" data-toggle="tooltip" title="Get a .doc copy of my CV!">
+                  <img src="icons/cv.png" alt="ImageName" width="50" height="50">
+                  </a>
+                   <a href="https://twitter.com/Aishee_Nguyen" data-toggle="tooltip" title="Go to my Twitter!" target="_blank">
+                  <img src="icons/twitter.png" alt="git" style="width:50px;height:50px;border:0;">
+                  </a>
+                  <a href="https://github.com/aishee" data-toggle="tooltip" title="Go to my GitHub!" target="_blank">
+                  <img src="icons/github.png" alt="git" style="width:50px;height:50px;border:0;">
+                  </a>
+                  <a href="https://www.facebook.com/aishee24" data-toggle="tooltip" title="Go to my Facebook!" target="_blank">
+                  <img src="icons/facebook.png" alt="git" style="width:50px;height:50px;border:0;">
+                  </a>
+               </form>
+            </div>
+         </div>
+         </div>
+      </div>
+
+   </body>
+</html>
